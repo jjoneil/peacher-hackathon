@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
+app.use(express.static('public'))
+
 var MongoClient = require("mongodb").MongoClient
 
 MongoClient.connect("mongodb://localhost", function(err, database) {
@@ -38,9 +40,30 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 })
 
 app.get('/', function(req, res) {
-	db.collection('assignment').find({}).toArray(function(err, data){
-	res.send(JSON.stringify(data));
-	});
+	res.sendFile(__dirname + '/public/index.html');
+});
+
+
+//login
+app.post('/login', function(req, res){
+	if (!req.body.username || !req.body.password) {
+		res.send("Username or password is incorrect");
+		return;
+	}
+
+	if(req.body.student){
+		// Data will be user data, if its not then the wrong crudentials. if correct user, confirm login and send to correct page
+		db.collection('student').findOne({username: req.body.username, password: req.body.password}, function(err, data){
+			res.send(JSON.stringify(data))
+		})
+	} db.collection('teacher').findOne({username: req.body.username, password: req.body.password}, function(err, data){
+			res.send(JSON.stringify(data))
+		})
+
+	}
 })
+
+
+
 
 
