@@ -4576,3 +4576,23 @@ section#contact .text-danger {
 h1 {
     font-size: 30px; 
 }
+#intro{
+    background-color: blanchedalmond;
+    font-size: 24px; 
+    width: 500px; 
+    height: 400px; 
+    opacity: .75; 
+}
+
+
+/*#questQuestions { 
+    border: 20px solid purple;
+    width: 500px;
+    height: 400px;
+    padding-left: 20px;
+    padding-top: 20px;
+    background-color: antiquewhite;
+    margin: 0 auto; 
+    font-size: 18px;
+    opacity: .75;
+}*/
