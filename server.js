@@ -96,10 +96,40 @@ app.get('/api/teacher', function(req, res){
 		})
 })
 
+app.get('/api/student', function(req, res){
+	db.collection('class').find({
+		studentId: req.session.user._id
+	}).toArray(function(err, data){
+			if (err){
+				console.log(err)
+			}
+
+			var arr = []
+			for(var obj of data){
+				for(var i in obj.assignment){
+					arr.push(obj.assignment[i])
+				}
+			}
+			console.log(arr)
+			if (data){
+				// res.send(JSON.stringify(arr));
+				db.collection('assignment').find({
+					_id: {
+						$in: arr
+					}
+				}).toArray(function(err, data){
+					res.send(JSON.stringify(data))
+					return
+				})
+			}
+		})
+})
+
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html');
 });
 
+//teacher get
 app.get("/teacherprof/:teacher", function(req, res){
 	var wantedTeach = req.params.teacher; 
 		if(req.session.user._id === wantedTeach){
@@ -110,6 +140,16 @@ app.get("/teacherprof/:teacher", function(req, res){
 
 });
 
+//student get
+app.get("/studentprof/:student", function(req, res){
+	var wantedStudent = req.params.student; 
+		if(req.session.user._id === wantedStudent){
+			res.sendFile(__dirname + '/public/parentprof.html')
+			return
+		}
+	res.send("error");
+
+});
 
 //login
 app.post('/login', function(req, res){
