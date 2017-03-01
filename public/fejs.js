@@ -51,15 +51,15 @@ $('#register').click(function(){
 
 function sendEmail(){
    var answerArr = [];
-   $("input, textarea").each(function(){       
-       if($(this).attr("type") === "radio"){            
-           if($(this).is(":checked")){
-              answerArr.push($(this).val());
-           }
-       }else{
+   $(".inputmessage, textarea").each(function(){       
+    //    if($(this).attr("type") === "radio"){            
+    //        if($(this).is(":checked")){
+    //           answerArr.push($(this).val());
+    //        }
+    //    }else{
           answerArr.push($(this).val());       
-       }
-   });
+       });
+//    });
 
     var body = answerArr.join("\n");
     var mailto = "someone@peacher.com";

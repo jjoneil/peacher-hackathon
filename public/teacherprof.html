@@ -62,6 +62,8 @@
 
 <body><center>
 <div id='mainDiv' class='divvy'> Yo ! This is where some shit will go, bro! </div>
+
+
     <center>
     <!--<img src="./images/peachertrans.png" width="75%" height="75%"><br>-->
     <img src="./images/peachErty.png" width="50%" height="50%">
@@ -134,5 +136,10 @@
 
 
     </footer>
+    <script>
+    $.post('/api/teacher', function (res){
+       var data = JSON.parse(res);
+    });
+    </script>
 </body>
 </html>
