@@ -2,6 +2,12 @@ var express = require("express");
 var session = require("express-session");
 var app = express();
 
+app.use(session( {
+secret: "lksdlkjslkdsfalksadadsfa",
+saveUninialized: true,
+resave: false
+}))
+
 var db ;
 
 // Body Parser
@@ -39,6 +45,7 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 	// // created new assignment
 	// db.collection('assignment').insert([{"assignmentName":"ass1","students":{"58b5ea085e9ce1ae5f716fa3":70,"58b5ea1f5e9ce1ae5f716fa4":100}}])
 
+<<<<<<< Updated upstream
 	app.listen(8080, function(){
 		console.log("listin on porta 8080");
 	})
@@ -52,23 +59,48 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 //saveUninialized: true,
 //resave: false
 //}))
+=======
+>>>>>>> Stashed changes
 
-// req.session ==={}
+	app.listen(8080, function(){
+		console.log("listin on porta 8080")
+	})
+});
 
-//app.get("/", function(req, res){
-// 	if(req.session.isLoggedIn) {
-// 		res.redirect("/loggedin");
-// 	} else {
-// 		res.redirect("/login");
-// 	}
-// })
+///////////////////////////////////////////////////////
 
-// app.post("/api/login", function(req, res) {
-// 	if(usernameAndPasswordCorrect(req.body.username, req.body.password)){
-// 		req.session.isLoggedIn = true;
-// 	}
-// })
 
+<<<<<<< Updated upstream
+=======
+req.session ==={}
+
+app.get("/", function(req, res){
+	if(req.session.isLoggedIn) {
+		res.redirect("/loggedin");
+	} else {
+		res.redirect("/login");
+	}
+})
+
+app.post("/api/login", function(req, res) {
+	if(usernameAndPasswordCorrect(req.body.username, req.body.password)){
+		req.session.isLoggedIn = true;
+	}
+})
+
+
+app.get('/', function(req, res){
+	db.collections('class').find({
+		teacherId: //filter
+	}).toArray(function(err, data){
+			if (err){
+				console.log(err)
+			}
+		})
+})
+
+
+>>>>>>> Stashed changes
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html');
 });
