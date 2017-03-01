@@ -1,24 +1,28 @@
 $('#myModal').modal('show');
 
-
-$('log').click(function(){
-    var isTeacher = $('#isTeacher').is(":checked");
-    var isParent = $('#isParent').is(":checked");
-    $.post('/login', {
-        username: $('#username').val(),
-        password: $('#password').val(),
-        student: isParent
-    }, function(res){
-        //change if statements according to res
-        if(isTeacher === true){
-            document.location = './teacherprof/:id'
-        }
-        if(isParent === true){
-            document.location = './studentprof/:id'
-        }
+$(document).ready(function(){
+    $('#log').click(function(){
+        console.log("clicked")
+        var isTeacher = $('#isTeacher').is(":checked");
+        var isParent = $('#isParent').is(":checked");
+        $.post('/login', {
+            username: $('#username').val(),
+            password: $('#password').val(),
+            student: isParent
+        }, function(res){
+            //change if statements according to res
+            console.log(res)
+            data = JSON.parse(res);
+            if(data.message == "success" && data.type == "teacher"){
+                document.location = './teacherprof/:id'
+            }
+            if(data.message == "success" && data.type == "student"){
+                console.log(data.type, data.message)
+                document.location = './studentprof/' + data.data._id;
+            }
+        });
     });
-});
-
+})
 
 $('#register').click(function(){
     var teachorparent = $('#teachorparent').is(":checked");
