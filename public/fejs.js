@@ -49,5 +49,26 @@ $('#register').click(function(){
     });
 });
 
+function sendEmail(){
+   var answerArr = [];
+   $("input, textarea").each(function(){       
+       if($(this).attr("type") === "radio"){            
+           if($(this).is(":checked")){
+              answerArr.push($(this).val());
+           }
+       }else{
+          answerArr.push($(this).val());       
+       }
+   });
 
+    var body = answerArr.join("\n");
+    var mailto = "someone@peacher.com";
+
+    var a = document.createElement('a');
+    a.href = "mailto:" + mailto + "?body=" + escape(body);
+    console.log(a.href);
+    a.click();
+}
+
+$(document).on("click",".submit",sendEmail);
 
