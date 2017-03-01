@@ -42,7 +42,7 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 
 //var app = express;
 //var session = require("expression-session";)
-//app.use(session( {}
+//app.use(session( {
 //secret: "asdfa",
 //saveUninialized: true,
 //resave: false

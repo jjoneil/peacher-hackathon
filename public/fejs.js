@@ -14,10 +14,9 @@ $(document).ready(function(){
             console.log(res)
             data = JSON.parse(res);
             if(data.message == "success" && data.type == "teacher"){
-                document.location = './teacherprof/:id'
+                document.location = './teacherprof/' + data.data._id;
             }
             if(data.message == "success" && data.type == "student"){
-                console.log(data.type, data.message)
                 document.location = './studentprof/' + data.data._id;
             }
         });
