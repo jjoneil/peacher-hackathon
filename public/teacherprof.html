@@ -138,8 +138,9 @@
     </footer>
     <script>
     $.get('/api/teacher', function (res){
+        console.log(res);
        var data = JSON.parse(res);
-       console.log(data);
+       
     });
     </script>
 </body>
