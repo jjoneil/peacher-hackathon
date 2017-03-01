@@ -17,17 +17,20 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
-var MongoClient = require("mongodb").MongoClient
+var MongoClient = require("mongodb").MongoClient;
 
 MongoClient.connect("mongodb://localhost", function(err, database) {
 	if (err){
-		console.log(err)
+		console.log(err);
 	}
-	db = database
+	db = database;
 
-
+	app.listen(8080, function(){
+		console.log("listin on porta 8080");
+	})
+})
 	//Create new user
 	// db.collection('student').insert([{"firstName":"Rob","lastName":"Dipson","username":"dipdip","password":"pikachu","parents":["Barry","Derby"]},{"firstName":"Dohn","lastName":"Obiel","username":"dohn","password":"password","parents":["tree","sand"]}]);
 
@@ -63,12 +66,6 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 // 		req.session.isLoggedIn = true;
 // 	}
 // })
-
-
-	app.listen(8080, function(){
-		console.log("listin on porta 8080")
-	})
-})
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html');
