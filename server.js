@@ -31,7 +31,7 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 	// db.collection('student').insert([{"firstName":"Rob","lastName":"Dipson","username":"dipdip","password":"pikachu","parents":["Barry","Derby"]},{"firstName":"Dohn","lastName":"Obiel","username":"dohn","password":"password","parents":["tree","sand"]}]);
 
 	// // create new teacher
-	// db.collection('teacher').insert([{"firstName":"Sarah","lastName":"huynh","userName":"imsarah","password":"password1","picture":"","bio":"","hireDate":"","courses":""}])
+	// db.collection('teacher').insert([{"firstName":"Sarah","lastName":"huynh","username":"imsarah","password":"password1","picture":"","bio":"","hireDate":"","courses":""}])
 
 	// // create new class
 	// db.collection('class').insert([{"className":"math","studentId":["58b5ea085e9ce1ae5f716fa3","58b5ea1f5e9ce1ae5f716fa4"],"assignment":["ass1"],"teacherId":"58b5f04a5e9ce1ae5f716fa6"}])
@@ -113,9 +113,9 @@ app.post('/login', function(req, res){
 				res.send(JSON.stringify({message: "success", data:data, type:"teacher"}));
 				return;
 			}else{
-				res.send({
+				res.send(JSON.stringify({
 					message: "Couldn't find user or bad password or not teacher"
-				});
+				}));
 				return;
 			}
 		});
