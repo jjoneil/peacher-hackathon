@@ -12,13 +12,8 @@ $(document).ready(function () {
         }, function (res) {
             //change if statements according to res
             console.log(res)
-<<<<<<< Updated upstream
             data = JSON.parse(res);
-            if (data.message == "success" && data.type == "teacher") {
-=======
-            data = JSON.parse(res);4
             if(data.message == "success" && data.type == "teacher"){
->>>>>>> Stashed changes
                 document.location = './teacherprof/' + data.data._id;
             }
             if (data.message == "success" && data.type == "student") {
@@ -31,12 +26,10 @@ $(document).ready(function () {
     });
 })
 
-<<<<<<< Updated upstream
-$('#register').click(function () {
-=======
+
 
 $('#register').click(function(){
->>>>>>> Stashed changes
+
     var teachorparent = $('#teachorparent').is(":checked");
     $.post('/signup', {
         firstname: $('firstsignup').val(),
