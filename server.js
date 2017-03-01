@@ -27,21 +27,23 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 	}
 	db = database;
 
+	// 	// Create new user
+	// db.collection('student').insert([{"firstName":"Rob","lastName":"Dipson","username":"dipdip","password":"pikachu","parents":["Barry","Derby"]},{"firstName":"Dohn","lastName":"Obiel","username":"dohn","password":"password","parents":["tree","sand"]}]);
+
+	// // create new teacher
+	// db.collection('teacher').insert([{"firstName":"Sarah","lastName":"huynh","userName":"imsarah","password":"password1","picture":"","bio":"","hireDate":"","courses":""}])
+
+	// // create new class
+	// db.collection('class').insert([{"className":"math","studentId":["58b5ea085e9ce1ae5f716fa3","58b5ea1f5e9ce1ae5f716fa4"],"assignment":["ass1"],"teacherId":"58b5f04a5e9ce1ae5f716fa6"}])
+
+	// // created new assignment
+	// db.collection('assignment').insert([{"assignmentName":"ass1","students":{"58b5ea085e9ce1ae5f716fa3":70,"58b5ea1f5e9ce1ae5f716fa4":100}}])
+
 	app.listen(8080, function(){
 		console.log("listin on porta 8080");
 	})
 })
-	//Create new user
-	// db.collection('student').insert([{"firstName":"Rob","lastName":"Dipson","username":"dipdip","password":"pikachu","parents":["Barry","Derby"]},{"firstName":"Dohn","lastName":"Obiel","username":"dohn","password":"password","parents":["tree","sand"]}]);
 
-	//create new teacher
-	// db.collection('teacher').insert([{"firstName":"Sarah","lastName":"huynh","userName":"imsarah","password":"password1","picture":"","bio":"","hireDate":"","courses":""}])
-
-	// create new class
-	// db.collection('class').insert([{"className":"math","studentId":["58b5ea085e9ce1ae5f716fa3","58b5ea1f5e9ce1ae5f716fa4"],"assignment":["ass1"],"teacherId":"58b5f04a5e9ce1ae5f716fa6"}])
-
-	// created new assignment
-	// db.collection('assignment').insert([{"assignmentName":"ass1","students":{"58b5ea085e9ce1ae5f716fa3":70,"58b5ea1f5e9ce1ae5f716fa4":100}}])
 
 //var app = express;
 //var session = require("expression-session";)

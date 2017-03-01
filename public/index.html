@@ -67,11 +67,8 @@
                                     <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
                                 </p>
                                 <p>
-                                    <label for="teachpar" class="teachparr" id="isTeacher">Teacher: </label><input type="checkbox"></input> <label for="parteach" class="parrteach">Student/Parent: </label><input type="checkbox" id="isParent"></input> 
-                                <p class="keeplogin"> 
-									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
-									<label for="loginkeeping">Keep me logged in</label>
-								</p>
+                                    <label for="teachpar" class="label1" id="isTeacher">Teacher: </label><input type="checkbox" class="torp"></input> <label for="parteach" class="label2">Student/Parent: </label><input type="checkbox" id="isParent" class="torp"></input> 
+                                    
                                 <p class="login button"> 
                                     <button id='log'>login</button> 
 								</p>
@@ -190,7 +187,9 @@
 
     </footer>
     <!--/.Footer-->
-
+<script>$('input.torp').on('change', function() {
+    $('input.torp').not(this).prop('checked', false);  
+});</script>
 
 </body>
 </html>
