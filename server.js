@@ -45,34 +45,12 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 	// // created new assignment
 	// db.collection('assignment').insert([{"assignmentName":"ass1","students":{"58b5ea085e9ce1ae5f716fa3":70,"58b5ea1f5e9ce1ae5f716fa4":100}}])
 
-<<<<<<< Updated upstream
-	app.listen(8080, function(){
-		console.log("listin on porta 8080");
-	})
-})
-
-
-//var app = express;
-//var session = require("expression-session";)
-//app.use(session( {
-//secret: "asdfa",
-//saveUninialized: true,
-//resave: false
-//}))
-=======
->>>>>>> Stashed changes
-
 	app.listen(8080, function(){
 		console.log("listin on porta 8080")
 	})
 });
 
 ///////////////////////////////////////////////////////
-
-
-<<<<<<< Updated upstream
-=======
-req.session ==={}
 
 app.get("/", function(req, res){
 	if(req.session.isLoggedIn) {
@@ -89,18 +67,31 @@ app.post("/api/login", function(req, res) {
 })
 
 
-app.get('/', function(req, res){
+app.get('/api/teacher', function(req, res){
 	db.collections('class').find({
-		teacherId: //filter
+		teacherId: res.session.user._id
 	}).toArray(function(err, data){
 			if (err){
 				console.log(err)
 			}
+
+			var arr = data.map(function(obj){
+				return obj.assignment
+			})
+
+			if (data){
+				db.collection('assignment').find({
+					_id: {
+						$in: arr
+					}
+				}).toArray(function(err, data){
+					res.send(JSON.stringify(data))
+					return
+				})
+			}
 		})
 })
 
-
->>>>>>> Stashed changes
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html');
 });
@@ -123,6 +114,7 @@ app.post('/login', function(req, res){
 			}
 			if(data != null){
 				console.log(data)
+				res.session.user = data;
 				res.send(JSON.stringify({message: "success", data:data, type:"student"}));
 				return;
 			}else{
@@ -142,6 +134,7 @@ app.post('/login', function(req, res){
 			}
 			if(data != null){
 				console.log(data)
+				res.session.user = data;
 				res.send(JSON.stringify({message: "success", data:data, type:"teacher"}));
 				return;
 			}else{
