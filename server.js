@@ -60,26 +60,30 @@ app.get("/", function(req, res){
 	}
 })
 
-app.post("/api/login", function(req, res) {
-	if(usernameAndPasswordCorrect(req.body.username, req.body.password)){
-		req.session.isLoggedIn = true;
-	}
-})
+// app.post("/api/login", function(req, res) {
+// 	if(usernameAndPasswordCorrect(req.body.username, req.body.password)){
+// 		req.session.isLoggedIn = true;
+// 	}
+// })
 
 
 app.get('/api/teacher', function(req, res){
-	db.collections('class').find({
-		teacherId: res.session.user._id
+	db.collection('class').find({
+		teacherId: req.session.user._id
 	}).toArray(function(err, data){
 			if (err){
 				console.log(err)
 			}
 
-			var arr = data.map(function(obj){
-				return obj.assignment
-			})
-
+			var arr = []
+			for(var obj of data){
+				for(var i in obj.assignment){
+					arr.push(obj.assignment[i])
+				}
+			}
+			console.log(arr)
 			if (data){
+				// res.send(JSON.stringify(arr));
 				db.collection('assignment').find({
 					_id: {
 						$in: arr
@@ -91,6 +95,10 @@ app.get('/api/teacher', function(req, res){
 			}
 		})
 })
+
+app.get('/', function(req, res) {
+	res.sendFile(__dirname + '/public/index.html');
+});
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html');
@@ -113,8 +121,8 @@ app.post('/login', function(req, res){
 				return;
 			}
 			if(data != null){
-				console.log(data)
-				res.session.user = data;
+				req.session.user = data;
+					console.log(req.session)
 				res.send(JSON.stringify({message: "success", data:data, type:"student"}));
 				return;
 			}else{
@@ -133,8 +141,8 @@ app.post('/login', function(req, res){
 				return;
 			}
 			if(data != null){
-				console.log(data)
-				res.session.user = data;
+				req.session.user = data;
+				console.log(req.session)
 				res.send(JSON.stringify({message: "success", data:data, type:"teacher"}));
 				return;
 			}else{
