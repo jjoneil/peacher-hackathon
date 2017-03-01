@@ -100,8 +100,14 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/public/index.html');
+app.get("/teacherprof/:teacher", function(req, res){
+	var wantedTeach = req.params.teacher; 
+		if(req.session.user._id === wantedTeach){
+			res.sendFile(__dirname + '/public/teacherprof.html')
+			return
+		}
+	res.send("error");
+
 });
 
 
