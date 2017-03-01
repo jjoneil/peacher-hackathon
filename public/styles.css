@@ -4582,8 +4582,8 @@ h1 {
     width: 500px; 
     height: 400px; 
     opacity: .75; 
+	align-content: center;
 }
-
 
 
 
@@ -4598,3 +4598,6 @@ h1 {
     font-size: 18px;
     opacity: .75;
 }*/
+body{
+	text-align: center;
+}
