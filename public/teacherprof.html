@@ -28,8 +28,9 @@
                             display: table-cell;
                             border-right: 1px solid #000000;
                             border-bottom: 1px solid #000000;
-                            width: 100px;
+                            width: 200px;
                             height: 30px;
+                            overflow:hidden;
                         }
                         
                         .row {
@@ -181,13 +182,16 @@
                 for (var iy = 0; iy < y; iy++) {
                     arrX = new Array();
                     for (var ix = 0; ix < x; ix++) {
-                        arrX[ix] = '<div class="cell" id="' + ix + "x" + iy + '"> &nbsp; </div>';
+                        arrX[ix] = '<td class="cell" id="' + ix + "x" + iy + '"> &nbsp; </td>';
                     }
-                    arrY[iy] = '<div class="row">' + arrX.join("\r\n") + '</div>';
+                    arrY[iy] = '<tr class="row">' + arrX.join("\r\n") + '</tr>';
                 }
                 container.append(arrY.join("\r\n"));
             };
             // call function
+
+
+
 
 
             function addAssGrid(data)
@@ -198,7 +202,8 @@
 
                     for (var s = 0; s < data[a].students.length; s++) 
                     {
-                        $('#0x' + (s+1)).html(data[a].students[s].student);                        
+
+                        $('#0x' + (s+1)).html(data[a].students[s].studentName);                        
                         $('#'+(a+2)+'x' + (s+1)).html(data[a].students[s].grade);
 
                         // if (a === 0) 
@@ -207,32 +212,32 @@
                             // }
                     }
                 }
-                var rows =  data[0].students.length+1;
-                var collumns = data.length+2;
+                // var rows =  data[0].students.length+1;
+                // var collumns = data.length+2;
 
-                for (var r = 2; r < rows+1; r++)    
-                {        
-                    var avG = parseFloat($('2x'+r).text());
-                    if (c > 2)
-                    {
-                        for (var c = 3; c < collumns+1; c++) 
-                        {
-                            avG = avG + parseFloat($('#'+c+'x'+r).text());
-                        }
-                    }
-                    $('#0x'+r).html(avG);  
-                }
+                // for (var r = 2; r < rows+1; r++)    
+                // {        
+                //     var avG = parseFloat($('2x'+r).text());
+                //     if (c > 2)
+                //     {
+                //         for (var c = 3; c < collumns+1; c++) 
+                //         {
+                //             avG = avG + parseFloat($('#'+c+'x'+r).text());
+                //         }
+                //     }
+                //     $('#0x'+r).html(avG);  
+                // }
 
-                var classAvg = parseFloat($('#1x1').text());
+                // var classAvg = parseFloat($('#1x1').text());
 
-                if (rows > 2)
-                {
-                    for (var r = 2; r < rows+1; r++) 
-                    {
-                        classAvg = classAvg + parseFloat($('#1x'+r).text());
-                    }   
-                }
-                $('#1x0').html(classAvg);  
+                // if (rows > 2)
+                // {
+                //     for (var r = 2; r < rows+1; r++) 
+                //     {
+                //         classAvg = classAvg + parseFloat($('#1x'+r).text());
+                //     }   
+                // }
+                // $('#1x0').html(classAvg);  
             }
 
 
@@ -245,6 +250,7 @@
                     console.log(data);
 
                     createGrid(data.length+2, data[0].students.length+1);
+                    
                     $('#0x0').html("Student");
                     $('#1x0').html("Overall Grade");
                     
