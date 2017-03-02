@@ -22,6 +22,31 @@
                     crossorigin="anonymous"></script>
                     <link rel="stylesheet" href="/styles.css">
                     <script src="/fejs.js"></script>
+
+
+                    <style>
+                        .cell {
+                            display: table-cell;
+/*                            border-right: 1px solid #000000;
+                            border-bottom: 1px solid #000000;*/
+                            width: 200px;
+                            height: 30px;
+                            overflow:hidden;
+                        }
+                        
+                        .row {
+                            display: table-row;
+                            clear: both;
+                            overflow: hidden;
+                        }
+                        
+                        .table {
+                            display: table;
+/*                            border-left: 1px solid #000000;
+                            border-top: 1px solid #000000;*/
+                            display: table;
+                        }
+                    </style>
 </head>
 <!--<div class="container">
   <!-- Topper w/ logo -->
@@ -71,7 +96,7 @@
 
 <body>
     <center>
-        <div id='mainDiv' class='divvy'> Yo !!!! This is where some shit will go, bro! </div>
+        <div id='mainDiv' class='divvy'> </div>
 
 
         <center>
@@ -145,20 +170,78 @@
     <!--/.Footer-->
         <script>
 
-    $.get('/api/student', function (res){
-       var data = JSON.parse(res);
-       console.log(data);
-       console.log(data[0].students[0])
-       $('.divvy').append('<p>' + data[0].students[0].student);
-    });
+
+            ////////
+            ///TABLE///
+            /////////]mesa
+
+            function createGrid(x, y) 
+            {
+                var arrY = new Array(),
+                    arrX,
+                    container = $(".divvy");
+                for (var iy = 0; iy < y; iy++) 
+                {
+                    arrX = new Array();
+                    for (var ix = 0; ix < x; ix++) 
+                    {
+                        arrX[ix] = '<div class="cell" id="' + ix + "x" + iy + '"> &nbsp; </div>';
+                    }
+                    arrY[iy] = '<div class="row">' + arrX.join("\r\n") + '</div>';
+                }
+                container.append(arrY.join("\r\n"));
+            };
+  
+            function addAssGrid(data)
+            {
+                for (var a = 0; a < data.length; a++) 
+                {               
+                    $('#' + (a+2) + 'x0').html(data[a].assignmentName);  
+                    $('#' + (a+2) + 'x1').html(data[a].students[0].grade);
+                }
+                computeStudentAvg(data);
+
+            }
+
+            function computeStudentAvg (data) 
+            { 
+                var collumns = data.length+2;
+
+                for (var c = 1; c < collumns; c++)    
+                {        
+                    var avG = parseFloat($('#2x1').text());
+                    console.log(avG)
+                    if (collumns > 2)
+                    {
+                        for (var c = 3; c < collumns; c++) 
+                        {
+                            avG = avG + parseFloat($('#'+c+'x1').text());
+                        }
+                    }
+                    console.log(avG)
+                    $('#1x1').html(avG/(collumns-2));  
+                }
+            }
 
 
 
+            $(document).ready(function () {
+                $.get('/api/student', function (res) {
+                    var data = JSON.parse(res);
+                    // $('.divvy').append('<p>' + data[0]._id);
+                    console.log(data);
 
+                    $('.divvy').html(data[0].students[0].studentName);
 
-
-
-
+                    createGrid(data.length+2, 2);
+                    
+                    $('#0x0').html("Class");
+                    $('#1x0').html("Overall Grade");
+                    
+                    addAssGrid(data);
+             
+                });
+            });
     </script>
 </body>
 </html>
