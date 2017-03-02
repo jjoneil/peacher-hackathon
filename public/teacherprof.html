@@ -168,11 +168,8 @@
                 </section>
         </footer>
         <script>
-            $.get('/api/teacher', function (res) {
-                var data = JSON.parse(res);
-                // $('.divvy').append('<p>' + data[0]._id);
-              
-            });
+
+
             ////////
             ///TABLE///
             /////////]mesa
@@ -191,13 +188,64 @@
                 container.append(arrY.join("\r\n"));
             };
             // call function
+
+
+            function addAssGrid(data)
+            {
+
+
+                for (var a = 0; a < data.length; a++) 
+                {               
+                    $('#' + (a+2) + 'x0').html(data[a].assignmentName);
+
+                    for (var s = 0; s < data[a].students.length; s++) 
+                    {
+                        $('#'+(a+2)+'x' + (s+1)).html(data[a].students[s].grade);
+
+                        if (a === 0) 
+                            {
+                                $('#0x' + (s+1)).html(data[a].students[s].student);
+                            }
+                    }
+                }
+                var rows =  data[0].students.length+1;
+                var collumns = data.length+2;
+
+                for (var r = 2; r < rows+1; r++)    
+                {        
+                    var avG = parseFloat($('2x'+r).text());
+                    if (c > 2)
+                    {
+                        for (var c = 3; c < collumns+1; c++) 
+                        {
+                            avG = avG + parseFloat($('#'+c+'x'+r).text());
+                        }
+                    }
+                    $('#0x'+r).html(avG);  
+                }
+            }
+
+
+
+
             $(document).ready(function () {
+                $.get('/api/teacher', function (res) {
+                    var data = JSON.parse(res);
+                    // $('.divvy').append('<p>' + data[0]._id);
+                    console.log(data);
 
-                createGrid(10, 10);
-                // $('#0x0').html("Student");
-                $('#1x0').html("Overall Grade");
+                    createGrid(data.length+2, data[0].students.length+1);
+                    $('#0x0').html("Student");
+                    $('#1x0').html("Overall Grade");
+                    
+                    addAssGrid(data);
 
+                    // $('#2x0').append(data[0].assignmentName);
+                    // $('#2x1').append(data[0].students[0].grade);              
+                });
             });
+
+
         </script>
 </body>
 
