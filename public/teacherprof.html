@@ -26,8 +26,8 @@
                     <style>
                         .cell {
                             display: table-cell;
-                            border-right: 1px solid #000000;
-                            border-bottom: 1px solid #000000;
+/*                            border-right: 1px solid #000000;
+                            border-bottom: 1px solid #000000;*/
                             width: 200px;
                             height: 30px;
                             overflow:hidden;
@@ -41,8 +41,8 @@
                         
                         .table {
                             display: table;
-                            border-left: 1px solid #000000;
-                            border-top: 1px solid #000000;
+/*                            border-left: 1px solid #000000;
+                            border-top: 1px solid #000000;*/
                             display: table;
                         }
                     </style>
@@ -175,16 +175,19 @@
             ///TABLE///
             /////////]mesa
 
-            function createGrid(x, y) {
+            function createGrid(x, y) 
+            {
                 var arrY = new Array(),
                     arrX,
                     container = $(".divvy");
-                for (var iy = 0; iy < y; iy++) {
+                for (var iy = 0; iy < y; iy++) 
+                {
                     arrX = new Array();
-                    for (var ix = 0; ix < x; ix++) {
-                        arrX[ix] = '<td class="cell" id="' + ix + "x" + iy + '"> &nbsp; </td>';
+                    for (var ix = 0; ix < x; ix++) 
+                    {
+                        arrX[ix] = '<div class="cell" id="' + ix + "x" + iy + '"> &nbsp; </div>';
                     }
-                    arrY[iy] = '<tr class="row">' + arrX.join("\r\n") + '</tr>';
+                    arrY[iy] = '<div class="row">' + arrX.join("\r\n") + '</div>';
                 }
                 container.append(arrY.join("\r\n"));
             };
@@ -206,15 +209,12 @@
                         $('#0x' + (s+1)).html(data[a].students[s].studentName);                        
                         $('#'+(a+2)+'x' + (s+1)).html(data[a].students[s].grade);
 
-                        // if (a === 0) 
-                        //     {
-
-                            // }
                     }
 
                 }
+
                 computeStudentAvg(data);
-                // computeClassAvg(data);
+                computeClassAvg(data);
 
             }
 
@@ -239,43 +239,26 @@
                 }
             }
 
-            // function computeClassAvg (data)
-            // {
-            //     var collumns = data.length+2;
-            //     var rows =  data[0].students.length+2;
+            function computeClassAvg (data)
+            {
+                var collumns = data.length+2;
+                var rows =  data[0].students.length+2;
                                 
-            //     for (var c = 1; c < collumns; c++) 
-            //     {   
-            //         var classAvg = parseFloat($('#'+c+'x1').text());                            
-            //         if (rows > 2)
-            //         {
-            //             for (var r = 2; r < rows; r++)    
-            //             {        
-            //                 classAvg = classAvg + parseFloat($('#'+c+'x'+r).text());
-            //             }
-            //                 // console.log(avG)
-            //         }        
-            //                 {
-            //                 for (var c = 3; c < collumns; c++) 
-            //                 {
+                for (var c = 1; c < collumns; c++) 
+                {   
+                    var classAvg = parseFloat($('#'+c+'x1').text());  
+                        
+                    if (rows > 2)
+                    {
+                        for (var r = 2; r < rows-1; r++)    
+                        {        
+                            classAvg = classAvg + parseFloat($('#'+c+'x'+r).text());
+                        }
+                    }
 
-            //                 }
-            //         }
-            //         // console.log(avG)
-            //         $('#1x'+r).html(avG/(collumns-2));  
-            //     }
-
-
-            //     if (rows > 2)
-            //     {
-            //         for (var r = 2; r < rows+1; r++) 
-            //         {
-            //             classAvg = classAvg + parseFloat($('#1x'+r).text());
-            //         }   
-            //     }
-            //     $('#' + +'x'+ rows).html(classAvg); 
-            //     $('#0x'+rows).html("Class Average");            
-            // }
+                    $('#'+c+'x'+(rows-1)).html(classAvg/(rows-2));  
+                }                  
+            }
 
 
 
@@ -285,19 +268,14 @@
                     var data = JSON.parse(res);
                     // $('.divvy').append('<p>' + data[0]._id);
                     console.log(data);
-
                     createGrid(data.length+2, data[0].students.length+2);
                     
                     $('#0x0').html("Student");
                     $('#1x0').html("Overall Grade");
-
+                    $('#0x'+(data[0].students.length+1)).html("Class Average");  
                     
                     addAssGrid(data);
-                    // computeStudentAvg(data);
-
-
-                    // $('#2x0').append(data[0].assignmentName);
-                    // $('#2x1').append(data[0].students[0].grade);              
+             
                 });
             });
 
