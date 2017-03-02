@@ -176,8 +176,9 @@ a.hiddenanchor{
 /** The wrapper that will contain our two forms **/
 #wrapper{
 	width: 60%;
+	height: 400px; 
 	right: 0px;
-	min-height: 560px;	
+	min-height: 250px;	
 	margin: 0px auto;	
 	width: 500px;
 	position: relative;	
@@ -199,7 +200,7 @@ a.hiddenanchor{
 	text-align: center;
 	padding-bottom: 30px;
 }
-/** For the moment only webkit supports the background-clip:text; */
+
 #wrapper h1{
     background: -webkit-repeating-linear-gradient(-45deg, 
 	rgb(18, 83, 93) , 
@@ -4220,6 +4221,81 @@ box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.36);
 }
 
 
+
+h1 {
+    font-size: 30px; 
+}
+.divvy{
+    background-color: blanchedalmond;
+    font-size: 24px; 
+    width: 500px; 
+    height: 800px; 
+    opacity: .95; 
+	align-content: center;
+	padding: 20px; 
+	border: 1px solid blanchedalmond;
+	border-radius: 12px;
+	margin: 0 auto; 
+	 
+}
+
+#intro{
+    background-color: blanchedalmond;
+    font-size: 24px; 
+    width: 800px; 
+    height: 400px; 
+    opacity: .75; 
+	align-content: center;
+}
+
+/*body, a:hover {cursor: url(/images/peachcursor.png), progress !important;}*/
+/*body, a:hover {cursor: url(/peachcursor.cur), progress !important;}*/
+
+/* Start http://www.cursors-4u.com */ body, a:hover {cursor: url(http://cur.cursors-4u.net/food/foo-3/foo247.ani), url(http://cur.cursors-4u.net/food/foo-3/foo247.png), progress !important;} /* End http://www.cursors-4u.com */
+
+
+.cell {
+                            display: table-cell;
+                            border-right: 1px solid #000000;
+                            border-bottom: 1px solid #000000;
+                            width: 200px;
+                            height: 30px;
+                            overflow:hidden;
+                        }
+                        
+                        .row {
+                            display: table-row;
+                            clear: both;
+                            overflow: hidden;
+                        }
+                        
+                        .table {
+                            display: table;
+                            border-left: 1px solid #000000;
+                            border-top: 1px solid #000000;
+                            display: table;
+                        }
+
+#teacherBio{
+	margin-bottom: 32px; 
+
+}
+
+#hrbro{
+	color: #f00;
+background-color: #f00;
+height: 5px;
+}
+
+body{
+	font-family: Courier New, Courier, monospace;
+
+}
+
+#jeffy{
+	border-radius: 25px; 
+}
+
 /*//////FOOTER!*/
 
 section#contact {
@@ -4316,29 +4392,3 @@ section#contact .text-danger {
     height: 20px;
     background: #ffffff;
 }
-
-h1 {
-    font-size: 30px; 
-}
-.divvy{
-    background-color: blanchedalmond;
-    font-size: 24px; 
-    width: 500px; 
-    height: 800px; 
-    opacity: .75; 
-	align-content: center;
-}
-
-#intro{
-    background-color: blanchedalmond;
-    font-size: 24px; 
-    width: 800px; 
-    height: 400px; 
-    opacity: .75; 
-	align-content: center;
-}
-
-/*body, a:hover {cursor: url(/images/peachcursor.png), progress !important;}*/
-/*body, a:hover {cursor: url(/peachcursor.cur), progress !important;}*/
-
-/* Start http://www.cursors-4u.com */ body, a:hover {cursor: url(http://cur.cursors-4u.net/food/foo-3/foo247.ani), url(http://cur.cursors-4u.net/food/foo-3/foo247.png), progress !important;} /* End http://www.cursors-4u.com */
