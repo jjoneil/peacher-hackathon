@@ -211,34 +211,71 @@
 
                             // }
                     }
+
                 }
-                // var rows =  data[0].students.length+1;
-                // var collumns = data.length+2;
+                computeStudentAvg(data);
+                // computeClassAvg(data);
 
-                // for (var r = 2; r < rows+1; r++)    
-                // {        
-                //     var avG = parseFloat($('2x'+r).text());
-                //     if (c > 2)
-                //     {
-                //         for (var c = 3; c < collumns+1; c++) 
-                //         {
-                //             avG = avG + parseFloat($('#'+c+'x'+r).text());
-                //         }
-                //     }
-                //     $('#0x'+r).html(avG);  
-                // }
-
-                // var classAvg = parseFloat($('#1x1').text());
-
-                // if (rows > 2)
-                // {
-                //     for (var r = 2; r < rows+1; r++) 
-                //     {
-                //         classAvg = classAvg + parseFloat($('#1x'+r).text());
-                //     }   
-                // }
-                // $('#1x0').html(classAvg);  
             }
+
+            function computeStudentAvg (data) 
+            { 
+                var rows =  data[0].students.length+2;
+                var collumns = data.length+2;
+
+                for (var r = 1; r < rows; r++)    
+                {        
+                    var avG = parseFloat($('#2x'+r).text());
+                    // console.log(avG)
+                    if (collumns > 2)
+                    {
+                        for (var c = 3; c < collumns; c++) 
+                        {
+                            avG = avG + parseFloat($('#'+c+'x'+r).text());
+                        }
+                    }
+                    // console.log(avG)
+                    $('#1x'+r).html(avG/(collumns-2));  
+                }
+            }
+
+            // function computeClassAvg (data)
+            // {
+            //     var collumns = data.length+2;
+            //     var rows =  data[0].students.length+2;
+                                
+            //     for (var c = 1; c < collumns; c++) 
+            //     {   
+            //         var classAvg = parseFloat($('#'+c+'x1').text());                            
+            //         if (rows > 2)
+            //         {
+            //             for (var r = 2; r < rows; r++)    
+            //             {        
+            //                 classAvg = classAvg + parseFloat($('#'+c+'x'+r).text());
+            //             }
+            //                 // console.log(avG)
+            //         }        
+            //                 {
+            //                 for (var c = 3; c < collumns; c++) 
+            //                 {
+
+            //                 }
+            //         }
+            //         // console.log(avG)
+            //         $('#1x'+r).html(avG/(collumns-2));  
+            //     }
+
+
+            //     if (rows > 2)
+            //     {
+            //         for (var r = 2; r < rows+1; r++) 
+            //         {
+            //             classAvg = classAvg + parseFloat($('#1x'+r).text());
+            //         }   
+            //     }
+            //     $('#' + +'x'+ rows).html(classAvg); 
+            //     $('#0x'+rows).html("Class Average");            
+            // }
 
 
 
@@ -249,12 +286,15 @@
                     // $('.divvy').append('<p>' + data[0]._id);
                     console.log(data);
 
-                    createGrid(data.length+2, data[0].students.length+1);
+                    createGrid(data.length+2, data[0].students.length+2);
                     
                     $('#0x0').html("Student");
                     $('#1x0').html("Overall Grade");
+
                     
                     addAssGrid(data);
+                    // computeStudentAvg(data);
+
 
                     // $('#2x0').append(data[0].assignmentName);
                     // $('#2x1').append(data[0].students[0].grade);              
