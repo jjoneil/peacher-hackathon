@@ -34,7 +34,7 @@
                             overflow:hidden;
                         }
                         
-                        .row {
+                        .rows {
                             display: table-row;
                             clear: both;
                             overflow: hidden;
@@ -101,7 +101,7 @@
 
         <center>
             <!--<img src="./images/peachertrans.png" width="75%" height="75%"><br>-->
-            <img src="/images/peachErty.png" width="50%" height="50%">
+            <img src="/images/peachErty.png" style="padding-top: 20px; width: 50%; height: relative; margin-left: ">
             <br>
 
 
@@ -187,7 +187,7 @@
                     {
                         arrX[ix] = '<div class="cell" id="' + ix + "x" + iy + '"> &nbsp; </div>';
                     }
-                    arrY[iy] = '<div class="row">' + arrX.join("\r\n") + '</div>';
+                    arrY[iy] = '<div class="rows">' + arrX.join("\r\n") + '</div>';
                 }
                 container.append(arrY.join("\r\n"));
             };
@@ -197,6 +197,7 @@
                 for (var a = 0; a < data.length; a++) 
                 {               
                     $('#' + (a+2) + 'x0').html(data[a].assignmentName);  
+                     $('#' + (a+2) + 'x0').addClass("bolded2")
                     $('#' + (a+2) + 'x1').html(data[a].students[0].grade);
                 }
                 computeStudentAvg(data);
@@ -231,12 +232,12 @@
                     // $('.divvy').append('<p>' + data[0]._id);
                     console.log(data);
 
-                    $('.divvy').html(data[0].students[0].studentName);
+                    $('.divvy').html('<p class="bolded2">' +data[0].students[0].studentName + '</p>');
 
                     createGrid(data.length+2, 2);
                     
-                    $('#0x0').html("Class");
-                    $('#1x0').html("Overall Grade");
+                    $('#0x0').html("Class").addClass("bolded2");
+                    $('#1x0').html("Overall Grade").addClass("bolded2");
                     
                     addAssGrid(data);
              
