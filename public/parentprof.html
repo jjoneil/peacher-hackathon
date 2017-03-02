@@ -197,7 +197,9 @@
                 for (var a = 0; a < data.length; a++) 
                 {               
                     $('#' + (a+2) + 'x0').html(data[a].assignmentName);  
-                     $('#' + (a+2) + 'x0').addClass("bolded2")
+                    $('#' + (a+2) + 'x0').addClass("bolded2")
+                    $('#0x1').html(data[a].className); 
+                    //$('#0x1').addClass("bolded2");  
                     $('#' + (a+2) + 'x1').html(data[a].students[0].grade);
                 }
                 computeStudentAvg(data);
