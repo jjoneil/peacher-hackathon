@@ -72,13 +72,11 @@
 
 
 <body>
-    <center>
-        <div id='mainDiv' class='divvy'> <body><center>
-    <img src = "https://s-media-cache-ak0.pinimg.com/originals/d1/69/1f/d1691fda6bd61e5dcba9ff91072f154b.jpg" class="img-rounded" id="jeffy" width="25%" height="25%"></center>
+        <div id='mainDiv' class='divvy'> <body>
+    <p style = "text-align:center;"><img src = "https://s-media-cache-ak0.pinimg.com/originals/d1/69/1f/d1691fda6bd61e5dcba9ff91072f154b.jpg" class="img-rounded" id="jeffy" width="50%" height="50%" align = "middle"></p>
         <p>
-
             <p>
-                <div id='mainDiv' class='divvy'>
+                <!--<div class='divvy'>-->
                     <div id='teacherBio'>
                         <h1>Professor Goldblum, pHD</h1>
                         Likes: Long walks on the beach<br> Dislikes: Long equations on the blackboard <br> Favorite Subject:
@@ -88,17 +86,18 @@
             <p>
                 <hr id='hrbro'> 
                 How are your students doing?
-                </div> </div>
+                    <!--</div> -->
+                </div>
 
 
-        <center>
+       
             <!--<img src="./images/peachertrans.png" width="75%" height="75%"><br>-->
-            <img src="/images/peachErty.png" width="50%" height="50%">
+            <img src="/images/peachErty.png" style="padding-top: 20px; width: 50%; height: relative; margin-left: 25%">
             <br>
 
 
 
-                </center>
+              
     <footer class="page-footer center-on-small-only primary-color-dark" id="footy">
         <div>
             <section id="contact" style="">
@@ -175,7 +174,7 @@
                     {
                         arrX[ix] = '<div class="cell" id="' + ix + "x" + iy + '"> &nbsp; </div>';
                     }
-                    arrY[iy] = '<div class="row">' + arrX.join("\r\n") + '</div>';
+                    arrY[iy] = '<div class="rows">' + arrX.join("\r\n") + '</div>';
                 }
                 container.append(arrY.join("\r\n"));
             };
@@ -185,9 +184,11 @@
                 for (var a = 0; a < data.length; a++) 
                 {               
                     $('#' + (a+2) + 'x0').html(data[a].assignmentName);
+                    $('#' + (a+2) + 'x0').addClass('bolded2')
                     for (var s = 0; s < data[a].students.length; s++) 
                     {
-                        $('#0x' + (s+1)).html(data[a].students[s].studentName);                        
+                        $('#0x' + (s+1)).html(data[a].students[s].studentName);  
+                         $('#0x' + (s+1)).addClass('bolded2') ;                    
                         $('#'+(a+2)+'x' + (s+1)).html(data[a].students[s].grade);
                     }
                 }
@@ -229,7 +230,7 @@
                             classAvg = classAvg + parseFloat($('#'+c+'x'+r).text());
                         }
                     }
-                    $('#'+c+'x'+(rows-1)).html(classAvg/(rows-2));  
+                    $('#'+c+'x'+(rows-1)).html(Math.floor(classAvg/(rows-2)));  
                 }                  
             }
             $(document).ready(function () {
@@ -239,9 +240,9 @@
                     console.log(data);
                     createGrid(data.length+2, data[0].students.length+2);
                     
-                    $('#0x0').html("Student");
-                    $('#1x0').html("Overall Grade");
-                    $('#0x'+(data[0].students.length+1)).html("Class Average");  
+                    $('#0x0').html("Student").addClass("bolded2");
+                    $('#1x0').html("Overall Grade").addClass("bolded2");
+                    $('#0x'+(data[0].students.length+1)).html("Class Average").addClass("bolded2");  
                     
                     addAssGrid(data);
              

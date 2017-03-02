@@ -4228,8 +4228,10 @@ h1 {
 .divvy{
     background-color: blanchedalmond;
     font-size: 24px; 
-    width: 500px; 
-    height: 800px; 
+	text-align: center;
+    width: 700px; 
+    height: absolute; 
+	text-overflow: ellipsis;
     opacity: .95; 
 	align-content: center;
 	padding: 20px; 
@@ -4263,7 +4265,7 @@ h1 {
                             overflow:hidden;
                         }
                         
-                        .row {
+                        .rows {
                             display: table-row;
                             clear: both;
                             overflow: hidden;
@@ -4283,8 +4285,18 @@ h1 {
 
 #hrbro{
 	color: #f00;
-background-color: #f00;
-height: 5px;
+	background-color: #f00;
+	font-weight: bold;
+	height: 5px;
+}
+
+.bolded2{
+	color: #000;
+	height: 50px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: bold;
+
 }
 
 body{
