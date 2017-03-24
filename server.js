@@ -6,7 +6,7 @@ app.use(session( {
 secret: "lksdlkjslkdsfalksadadsfa",
 saveUninialized: true,
 resave: false
-}))
+}));
 
 var db ;
 
@@ -46,8 +46,8 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 	// db.collection('assignment').insert([{"assignmentName":"ass1","students":{"58b5ea085e9ce1ae5f716fa3":70,"58b5ea1f5e9ce1ae5f716fa4":100}}])
 
 	app.listen(8080, function(){
-		console.log("listin on porta 8080")
-	})
+		console.log("listin on porta 8080");
+	});
 });
 
 ///////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ app.get("/", function(req, res){
 	} else {
 		res.redirect("/login");
 	}
-})
+});
 
 // app.post("/api/login", function(req, res) {
 // 	if(usernameAndPasswordCorrect(req.body.username, req.body.password)){

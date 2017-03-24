@@ -2,7 +2,7 @@ $('#myModal').modal('show');
 
 $(document).ready(function () {
     $('#log').click(function () {
-        console.log("clicked")
+        console.log("clicked");
         var isTeacher = $('#isTeacher').is(":checked");
         var isParent = $('#isParent').is(":checked");
         $.post('/login', {
@@ -24,7 +24,7 @@ $(document).ready(function () {
             }
         });
     });
-})
+});
 
 
 
