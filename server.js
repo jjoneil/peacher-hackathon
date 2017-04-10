@@ -27,7 +27,9 @@ app.use(express.static('public'));
 
 var MongoClient = require("mongodb").MongoClient;
 
-MongoClient.connect("mongodb://localhost", function(err, database) {
+var url = 'mongodb://localhost:27017/peacherdb';
+
+MongoClient.connect(url, function(err, database) {
 	if (err){
 		console.log(err);
 	}
@@ -45,9 +47,9 @@ MongoClient.connect("mongodb://localhost", function(err, database) {
 	// // created new assignment
 	// db.collection('assignment').insert([{"assignmentName":"ass1","students":{"58b5ea085e9ce1ae5f716fa3":70,"58b5ea1f5e9ce1ae5f716fa4":100}}])
 
-	app.listen(8080, function(){
-		console.log("listin on porta 8080");
-	});
+	// app.listen(8080, function(){
+	// 	console.log("listin on porta 8080");
+	// });
 });
 
 ///////////////////////////////////////////////////////
@@ -131,7 +133,7 @@ app.get('/', function(req, res) {
 
 //teacher get
 app.get("/teacherprof/:teacher", function(req, res){
-	var wantedTeach = req.params.teacher; 
+	var wantedTeach = req.params.teacher;
 		if(req.session.user._id === wantedTeach){
 			res.sendFile(__dirname + '/public/teacherprof.html')
 			return
@@ -142,7 +144,7 @@ app.get("/teacherprof/:teacher", function(req, res){
 
 //student get
 app.get("/studentprof/:student", function(req, res){
-	var wantedStudent = req.params.student; 
+	var wantedStudent = req.params.student;
 		if(req.session.user._id === wantedStudent){
 			res.sendFile(__dirname + '/public/parentprof.html')
 			return
@@ -160,7 +162,7 @@ app.post('/login', function(req, res){
 	}
 	if(req.body.student == "true"){
 		// Data will be user data, if its not then the wrong crudentials. if correct user, confirm login and send to correct page
-		db.collection('student').findOne({username: req.body.username, password: req.body.password}, function(err, data){	
+		db.collection('student').findOne({username: req.body.username, password: req.body.password}, function(err, data){
 			console.log(data, "should be dohn");
 			if(err){
 				console.log(err)
@@ -177,7 +179,7 @@ app.post('/login', function(req, res){
 				});
 				return;
 			}
-			
+
 		});
 	} else {
 
@@ -201,7 +203,7 @@ app.post('/login', function(req, res){
 
 	}
 
-	
+
 })
 
 // app.post("/api/login", function(req, res) {
